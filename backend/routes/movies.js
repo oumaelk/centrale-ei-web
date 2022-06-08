@@ -14,6 +14,7 @@ router.post("/new", async function (req, res) {
     description: req.body.description,
     url: req.body.url,
     viewers: req.body.viewers,
+    release_date: req.body.release_date,
   });
 
   try {
