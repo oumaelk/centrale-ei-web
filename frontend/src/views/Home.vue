@@ -2,10 +2,10 @@
   <div class="home">
     <h1>My Films Recommendation</h1>
     <p>Movie Name: {{ $data.movieName }}</p>
-    <input type="text" v-model="movieName" />
+    <input type="text" v-model="movieName" placeholder="Search movies"/>
     <h2>Most Popular this week</h2>
     <div class="parent">
-      <li v-for="movie in movies" :key="movie.id">
+      <li v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
       </li>
     </div>
@@ -15,6 +15,7 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
+import { booleanLiteral } from "@babel/types";
 
 export default {
   name: "Home",
@@ -72,6 +73,13 @@ export default {
       this.fetchRecommentations(movie.id);
     }
   },
+  computed:{
+    filteredMovies: function(){
+      return this.movies.filter((movie)=>{
+        return movie.title.toLowerCase().match(this.movieName.toLocaleLowerCase());
+      });
+    }
+  }
 };
 </script>
 
