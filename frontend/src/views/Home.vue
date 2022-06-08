@@ -30,18 +30,11 @@ export default {
       recommanded: {},
     };
   },
-  /*watch: {
-    movieName: function () {
-      if (length(this.movieName) > 0) {
-        this.search();
-      }
-    },
-  },*/
   methods: {
     fetchMovies: function () {
       axios
-        .get(`localhost:3000/movies/`)
-        .then((response) => (this.movies = response));
+        .get(`http://localhost:3000/movies/`)
+        .then((response) => (this.movies = response.data));
     },
   },
   mounted: function () {
