@@ -3,10 +3,8 @@ const movieModel = require("../models/movies");
 const router = express.Router();
 
 router.get("/", async function (req, res) {
-  try {
-    const movies = await movieModel.find({}).populate("viewers");
-    res.json(movies);
-  } catch (error) {}
+  const movies = await movieModel.find({}).populate("viewers");
+  res.json(movies);
 });
 router.post("/new", async function (req, res) {
   const newMovie = new movieModel({

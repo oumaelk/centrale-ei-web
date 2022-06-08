@@ -8,7 +8,7 @@ async function fetchMoviesFromTheMovieDatabase() {
 
   let movies = [];
 
-  for (let page = 1; page < 100; page++) {
+  for (let page = 1; page < 10; page++) {
     const results = await axios.get(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${apikey}&page=${page}`
     );
@@ -23,7 +23,8 @@ async function populateMovies(movies) {
   for (var movie of movies) {
     const newMovie = new movieModel({
       title: movie.title,
-      date: movie.date,
+      release_date: movie.release_date,
+      poster_path: movie.poster_path,
     });
     await newMovie.save();
   }
