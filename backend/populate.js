@@ -8,7 +8,7 @@ async function fetchMoviesFromTheMovieDatabase() {
 
   let movies = [];
 
-  for (let page = 1; page < 10; page++) {
+  for (let page = 1; page < 20; page++) {
     const results = await axios.get(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${apikey}&page=${page}`
     );
