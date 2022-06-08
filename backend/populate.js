@@ -1,30 +1,39 @@
 const { default: axios } = require("axios");
-const { response } = require("express");
 const mongoose = require("mongoose");
 const movieModel = require("./models/movies");
 const apikey = "522d421671cf75c2cba341597d86403a";
 
 async function fetchMoviesFromTheMovieDatabase() {
   // TODO: fetch movies from the The Movie Database API
-  try {
-    return await axios.get(
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apikey
-    ).data.results;
-  } catch (error) {}
+
+  let movies = [];
+
+  for (let page = 1; page < 100; page++) {
+    const results = await axios.get(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${apikey}&page=${page}`
+    );
+
+    movies = movies.concat(results.data.results);
+  }
+
+  return movies;
 }
 async function populateMovies(movies) {
   // TODO: populate movies into the database
-  try {
-    for (var movie in movies) {
-      movie = await movieModel.populate(movie);
-    }
-  } catch (error) {}
+  for (var movie of movies) {
+    const newMovie = new movieModel({
+      title: movie.title,
+      date: movie.date,
+    });
+    await newMovie.save();
+  }
 }
 
 async function dropDataBase() {
   // TODO: Drop the collections
-  try {
-  } catch (error) {}
+  const connection = mongoose.connection;
+
+  await connection.dropCollection("movies");
 }
 
 async function populate() {
