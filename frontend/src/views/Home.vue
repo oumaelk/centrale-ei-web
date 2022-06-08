@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <h1>My Films Recommendation</h1>
-    <p>Movie Name: {{ $data.movieName }}</p>
+    <!--<p>Movie Name: {{ $data.movieName }}</p>-->
     <input type="text" v-model="movieName" placeholder="Search movies"/>
     <h2>Most Popular this week</h2>
     <div class="parent">
-      <li v-for="movie in filteredMovies" :key="movie.id">
+      <router-link to="{path: movie.id }" v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
-      </li>
+      </router-link>
     </div>
   </div>
 </template>
@@ -79,7 +79,10 @@ export default {
         return movie.title.toLowerCase().match(this.movieName.toLocaleLowerCase());
       });
     }
-  }
+  },
+  createURL: function (movie) {
+      return "/" + movie.id;
+  },
 };
 </script>
 
