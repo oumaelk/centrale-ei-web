@@ -1,15 +1,23 @@
+const { default: axios } = require("axios");
+const { response } = require("express");
 const mongoose = require("mongoose");
-const MovieModel = require("./models/movie");
+const movieModel = require("./models/movies");
+const apikey = "522d421671cf75c2cba341597d86403a";
 
 async function fetchMoviesFromTheMovieDatabase() {
   // TODO: fetch movies from the The Movie Database API
   try {
+    return await axios.get(
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apikey
+    ).data.results;
   } catch (error) {}
 }
-
-async function populateMovies() {
+async function populateMovies(movies) {
   // TODO: populate movies into the database
   try {
+    for (var movie in movies) {
+      movie = await movieModel.populate(movie);
+    }
   } catch (error) {}
 }
 
