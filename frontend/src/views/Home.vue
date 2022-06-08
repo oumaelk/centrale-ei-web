@@ -1,84 +1,77 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Welcome to Your Vue.js App</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          >babel</a
-        >
+    <h1>My Films Recommendation</h1>
+    <p>Movie Name: {{ $data.movieName }}</p>
+    <input type="text" v-model="movieName" />
+    <h2>Most Popular this week</h2>
+    <div class="parent">
+      <li v-for="movie in movies" :key="movie.id">
+        <Movie :movie="movie" />
       </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank">Forum</a>
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank">Community Chat</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank">Twitter</a>
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank">vue-router</a>
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank">vue-loader</a>
-      </li>
-      <li>
-        <a href="https://github.com/vuejs/awesome-vue" target="_blank"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import Movie from "@/components/Movie.vue";
+
 export default {
   name: "Home",
+  components: {
+    Movie,
+  },
+  data: function () {
+    return {
+      movieName: "",
+      movies: [],
+      match_search: [],
+      recommanded: {},
+    };
+  },
+  /*watch: {
+    movieName: function () {
+      if (length(this.movieName) > 0) {
+        this.search();
+      }
+    },
+  },*/
+  methods: {
+    fetchMovies: function () {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/movie/popular?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=en-US&page=1"
+        )
+        .then((response) => {
+          this.movies = response.data.results;
+        });
+    },
+    /*fetchRecommentations: function (movieId) {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/movie/" +
+            movieId +
+            "/recommendations?api_key=522d421671cf75c2cba341597d86403a&language=en-US&page=1"
+        )
+        .then((response) => {
+          console.log(response);
+          this.recommanded[movieId] = response.data.results;
+        });
+    },
+    search: function () {
+      for (const movie in this.movies) {
+        if (movie.title.includes(this.movieName)) {
+          this.match_search.push(movie);
+        }
+      }
+    },*/
+  },
+  mounted: function () {
+    this.fetchMovies();
+    for (const movie in this.movies) {
+      this.fetchRecommentations(movie.id);
+    }
+  },
 };
 </script>
 
@@ -87,7 +80,10 @@ export default {
 .home {
   text-align: center;
 }
-
+h2 {
+  text-align: left;
+  margin: 5%;
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -98,11 +94,17 @@ ul {
 }
 
 li {
-  display: inline-block;
+  list-style: none;
   margin: 0 10px;
 }
 
 a {
   color: #42b983;
+}
+.parent {
+  display: flex;
+  padding: 10px;
+  flex-flow: row nowrap;
+  overflow: scroll;
 }
 </style>

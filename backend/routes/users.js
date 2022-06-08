@@ -41,5 +41,13 @@ router.delete("/:userId", function (req, res) {
       res.status(500).json({ message: "Error while deleting the user" });
     });
 });
-
+router.get("/:id/movies", async function (req, res) {
+  try {
+    const id = req.params.id;
+    const user = await UserModel.findOne({ _id: id }).populate("watchedMovies");
+    res.json(user.watchedMovies);
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
