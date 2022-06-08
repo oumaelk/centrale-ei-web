@@ -1,13 +1,11 @@
 <template>
   <div class="home">
     <h1>My Films Recommendation</h1>
-    <p>Movie Name: {{ $data.movieName }}</p>
-    <input type="text" v-model="movieName" placeholder="Search movies" />
+    <!--<p>Movie Name: {{ $data.movieName }}</p>-->
+    <input type="text" v-model="movieName" placeholder="Search movies"/>
     <h2>Most Popular this week</h2>
-    <div class="parent">
-      <li v-for="movie in filteredMovies" :key="movie.id">
-        <Movie :movie="movie" />
-      </li>
+
+
     </div>
   </div>
 </template>
@@ -16,6 +14,7 @@
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
 import { booleanLiteral } from "@babel/types";
+
 
 export default {
   name: "Home",
@@ -33,21 +32,53 @@ export default {
   methods: {
     fetchMovies: function () {
       axios
+<<<<<<< HEAD
         .get(`http://localhost:3000/movies/`)
         .then((response) => (this.movies = response.data));
+=======
+        .get(
+          "https://api.themoviedb.org/3/movie/popular?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=en-US&page=1"
+        )
+        .then((response) => {
+          this.movies = response.data.results;
+        });
     },
+    /*fetchRecommentations: function (movieId) {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/movie/" +
+            movieId +
+            "/recommendations?api_key=522d421671cf75c2cba341597d86403a&language=en-US&page=1"
+        )
+        .then((response) => {
+          console.log(response);
+          this.recommanded[movieId] = response.data.results;
+        });
+>>>>>>> master
+    },
+    search: function () {
+      for (const movie in this.movies) {
+        if (movie.title.includes(this.movieName)) {
+          this.match_search.push(movie);
+        }
+      }
+    },*/
   },
   mounted: function () {
     this.fetchMovies();
+    for (const movie in this.movies) {
+      this.fetchRecommentations(movie.id);
+    }
   },
-  computed: {
-    filteredMovies: function () {
-      return this.movies.filter((movie) => {
-        return movie.title
-          .toLowerCase()
-          .match(this.movieName.toLocaleLowerCase());
+  computed:{
+    filteredMovies: function(){
+      return this.movies.filter((movie)=>{
+        return movie.title.toLowerCase().match(this.movieName.toLocaleLowerCase());
       });
-    },
+    }
+  },
+  createURL: function (movie) {
+      return "/" + movie.id;
   },
 };
 </script>
