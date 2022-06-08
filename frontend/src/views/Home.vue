@@ -2,8 +2,9 @@
   <div class="home">
     <h1>My Films Recommendation</h1>
     <!--<p>Movie Name: {{ $data.movieName }}</p>-->
+    <h2>Most Popular this week</h2>
     <input type="text" v-model="movieName" placeholder="Search movies" />
-    <div>
+    <div class="parent">
       <li v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
       </li>
@@ -15,7 +16,6 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
-import { booleanLiteral } from "@babel/types";
 
 export default {
   name: "Home",
