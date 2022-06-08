@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <router-link :to="`/overview/${movie._id}`" class="card">
     <img :src="createURL(movie)" />
     <div class="title">{{ movie.title }}</div>
     <div class="date">({{ movie.release_date }})</div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -22,6 +22,7 @@ export default {
 
 <style scoped>
 .card {
+  display: block;
   background-color: black;
   width: 150px;
   margin: 10px;
