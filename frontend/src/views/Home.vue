@@ -3,12 +3,12 @@
     <h1>My Films Recommendation</h1>
     <!--<p>Movie Name: {{ $data.movieName }}</p>-->
     <input type="text" v-model="movieName" placeholder="Search movies" />
+    <h2>Most Popular this week</h2>
     <div class="parent">
       <li v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
       </li>
     </div>
-    <h2>Most Popular this week</h2>
   </div>
 </template>
 

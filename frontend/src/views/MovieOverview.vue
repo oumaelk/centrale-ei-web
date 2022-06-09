@@ -1,13 +1,14 @@
 <template>
   <h1 v-if="movie">{{ movie.title }}</h1>
   <h1 v-else>Sorry, this movie does not exist in the database.</h1>
+  <div>{{ movie }}</div>
 </template>
 <script>
 import axios from "axios";
 
 export default {
   data: function () {
-    return { movie: null };
+    return { movie: Object };
   },
   computed: {
     id: function () {
