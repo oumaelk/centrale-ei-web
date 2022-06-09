@@ -9,6 +9,11 @@
 </template>
 
 <style scoped>
+* {
+  background-color: #484d6d;
+  color: white;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
 .nav {
   text-align: center;
   padding: 30px;
@@ -16,10 +21,10 @@
 
 .nav-link {
   font-weight: bold;
-  color: #2c3e50;
+  color: #fffcf9;
 }
 
 .nav-link.router-link-exact-active {
-  color: #42b983;
+  color: #ff6878;
 }
 </style>
