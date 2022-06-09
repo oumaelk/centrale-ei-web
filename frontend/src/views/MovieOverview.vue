@@ -1,6 +1,6 @@
 <template>
-  <h1 v-if="movie">This is a movie page {{ movie.title }}</h1>
-  <h1 v-else>No movie found</h1>
+  <h1 v-if="movie">{{ movie.title }}</h1>
+  <h1 v-else>Sorry, this movie does not exist in the database.</h1>
 </template>
 <script>
 import axios from "axios";
