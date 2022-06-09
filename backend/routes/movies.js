@@ -6,12 +6,29 @@ router.get("/", async function (req, res) {
   const movies = await movieModel.find({}).populate("viewers");
   res.json(movies);
 });
+
+router.get("/:id", async function (req, res) {
+  try {
+    const movie = await movieModel.findById(req.params.id).populate("viewers");
+    if (movie === null) {
+      res
+        .status(404)
+        .json({ error: `Movie with id '${req.params.id}' does not exist` });
+    } else {
+      res.json(movie);
+    }
+  } catch (error) {
+    res.status(500).json({ error: `Unable to retrive the movie` });
+  }
+});
+
 router.post("/new", async function (req, res) {
   const newMovie = new movieModel({
     title: req.body.title,
     description: req.body.description,
     url: req.body.url,
     viewers: req.body.viewers,
+    release_date: req.body.release_date,
   });
 
   try {

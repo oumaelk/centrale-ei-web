@@ -39,9 +39,6 @@ export default {
   },
   mounted: function () {
     this.fetchMovies();
-    for (const movie in this.movies) {
-      this.fetchRecommentations(movie.id);
-    }
   },
   computed: {
     filteredMovies: function () {

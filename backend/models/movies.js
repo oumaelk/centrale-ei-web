@@ -7,6 +7,8 @@ const MovieSchema = new mongoose.Schema({
   release_date: { type: String },
   poster_path: { type: String },
   viewers: [{ type: mongoose.Schema.Types.ObjectId, ref: "UserModel" }],
+  release_date: { type: String },
+  poster_path: { type: String },
 });
 
 const movieModel = mongoose.model("MovieModel", MovieSchema, "movies");
