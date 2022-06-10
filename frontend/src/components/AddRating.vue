@@ -51,16 +51,16 @@ export default {
 };
 </script>
 <style scoped>
-.add-movie-title {
+.add-rating-title {
   margin-bottom: 10px;
 }
 
-.add-movie-form-container {
+.add-rating-form-container {
   display: flex;
   margin-bottom: 20px;
 }
 
-.add-movie-input {
+.add-rating-input {
   background-color: lightgray;
   color: black;
   width: 80%;
@@ -68,7 +68,7 @@ export default {
   margin-top: 5%;
 }
 
-.add-movie-button {
+.add-rating-button {
   cursor: pointer;
   padding: 5px;
 }

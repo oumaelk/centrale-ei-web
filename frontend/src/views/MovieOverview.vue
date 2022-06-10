@@ -1,12 +1,12 @@
 <template>
   <div>
-    <a href="/"><img src="../icons/Logo.png" style="width: 50%" /></a>
     <div v-if="movie" class="row">
       <div class="column">
+        <a href="/"><img src="../icons/Logo.png" style="width: 75%" /></a>
         <h1>{{ movie.title }}</h1>
         <p>Release date: {{ movie.release_date }}</p>
         <p>Viewed by {{ countViewers(movie) }} viewers using our platform.</p>
-        <h2>{{ movieDetails.overview }}</h2>
+        <h3 style="text-align: justify">{{ movieDetails.overview }}</h3>
         <p>Rate this movie from 1 to 5</p>
         <AddRating @ratingSaved="fetchUsers()" />
       </div>
@@ -68,20 +68,23 @@ export default {
     await this.fetchMovie();
     this.fetchMovieDetails();
   },
-  fetchMovie: function () {
+  fetchRating: function () {
     axios
       .get(`${process.env.VUE_APP_BACKEND_BASE_URL}/movies`)
       .then((response) => {
         this.movie = response.data;
       })
       .catch((error) => {
-        this.movieLoadingError = "An error occured while adding the movie.";
+        this.movieLoadingError = "An error occured while saving the rating.";
         console.error(error);
       });
   },
 };
 </script>
 <style scoped>
+h1 {
+  color: #ff6978;
+}
 .row {
   display: flex;
   float: left;
