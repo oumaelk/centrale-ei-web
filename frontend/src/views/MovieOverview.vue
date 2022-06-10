@@ -6,16 +6,6 @@
         <p>Release date: {{ movie.release_date }}</p>
         <p>Viewed by {{ countViewers(movie) }} viewers using our platform.</p>
         <h2>{{ movieDetails.overview }}</h2>
-        <button class="btn btn-like">
-          <span class="btn-icon btn--icon-default">
-            <span class="fa fa-heart"></span>
-          </span>
-          <span class="btn-icon btn--icon-liked">
-            <span class="fa fa-heart"></span>
-          </span>
-          <span class="btn-content btn-content--liked"> Liked </span>
-          <span class="btn-content btn-content--default"> Like </span>
-        </button>
       </div>
       <div class="column">
         <img :src="createURL(movie)" />
