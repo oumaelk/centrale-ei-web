@@ -8,7 +8,7 @@
   <router-view />
 </template>
 
-<style scoped>
+<style>
 * {
   background-color: #484d6d;
   color: white;
