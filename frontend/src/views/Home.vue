@@ -26,7 +26,6 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
-import { booleanLiteral } from "@babel/types";
 
 export default {
   name: "Home",

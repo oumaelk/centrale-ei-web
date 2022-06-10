@@ -1,5 +1,6 @@
 const express = require("express");
 const UserModel = require("../models/user");
+const RatingModel = require("../models/ratings");
 const router = express.Router();
 
 router.get("/", function (req, res) {
@@ -7,6 +8,19 @@ router.get("/", function (req, res) {
     res.json({ users: users });
   });
 });
+
+router.post("/like/:userId", async function (req, res) {
+  const userId = req.params.userId
+  const movieId = req.body.movieId
+  const note = req.body.note
+
+  await RatingModel.findOneAndUpdate({ movie_id: movieId, user_id: userId }, {
+    movie_id: movieId, user_id: userId, note: note
+  }, { upsert: true })
+
+  res.send("ok")
+});
+
 
 router.post("/new", function (req, res) {
   const newUser = new UserModel({
