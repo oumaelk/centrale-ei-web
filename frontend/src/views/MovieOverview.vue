@@ -8,6 +8,7 @@
         <p>Viewed by {{ countViewers(movie) }} viewers using our platform.</p>
         <h2>{{ movieDetails.overview }}</h2>
         <p>Rate this movie from 1 to 5</p>
+        <AddRating @ratingSaved="fetchUsers()" />
       </div>
       <div class="column">
         <img :src="createURL(movie)" />
@@ -19,10 +20,14 @@
 
 <script>
 import axios from "axios";
+import AddRating from "@/components/AddRating.vue";
 
 const apiKey = "15d2ea6d0dc1d476efbca3eba2b9bbfb";
 
 export default {
+  components: {
+    AddRating,
+  },
   data: function () {
     return { movie: null, movieDetails: "" };
   },
@@ -62,6 +67,17 @@ export default {
   mounted: async function () {
     await this.fetchMovie();
     this.fetchMovieDetails();
+  },
+  fetchMovie: function () {
+    axios
+      .get(`${process.env.VUE_APP_BACKEND_BASE_URL}/movies`)
+      .then((response) => {
+        this.movie = response.data;
+      })
+      .catch((error) => {
+        this.movieLoadingError = "An error occured while adding the movie.";
+        console.error(error);
+      });
   },
 };
 </script>
