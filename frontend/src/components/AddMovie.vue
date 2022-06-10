@@ -62,8 +62,11 @@ export default {
 }
 
 .add-movie-input {
-  margin-right: 10px;
-  padding: 5px;
+  background-color: lightgray;
+  color: black;
+  width: 80%;
+  height: 20px;
+  margin-top: 5%;
 }
 
 .add-movie-button {
