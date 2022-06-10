@@ -1,4 +1,5 @@
 <template>
+  <a href="/"><img src="../icons/Logo.png" style="width: 50%" /></a>
   <h1>My movies</h1>
   <AddMovie @movieAdded="fetchMovie()" />
   <MovieTable v-if="movie.length" :movie="movie" @movieDeleted="fetchMovie()" />

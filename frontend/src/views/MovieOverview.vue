@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a href="/"><img src="../icons/Logo.png" style="width: 50%" /></a>
     <div v-if="movie" class="row">
       <div class="column">
         <h1>{{ movie.title }}</h1>

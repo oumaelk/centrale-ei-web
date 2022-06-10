@@ -2,7 +2,11 @@
   <div class="home">
     <div class="row">
       <div class="column">
-        <h1>MY MOVIE BUDDY</h1>
+        <a href="/">
+          <div class="logo">
+            <img src="../icons/Logo.png" style="width: 80%" />
+          </div>
+        </a>
       </div>
       <div class="column">
         <img class="icon" src="../icons/3669253_ic_search_icon.png" />
@@ -14,11 +18,15 @@
         />
       </div>
     </div>
-    <router-link class="nav-link" to="/movies/add">My Movies</router-link>
     <div class="parent">
       <li v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
       </li>
+    </div>
+    <div class="row">
+      <router-link class="nav-link" to="/movies/add">
+        <h3>Take a look at my Movies</h3>
+      </router-link>
     </div>
   </div>
 </template>
@@ -87,11 +95,13 @@ h1 {
 .row {
   display: flex;
   align-items: center;
+  text-align: center;
 }
 .column {
   width: 50%;
   align-items: center;
 }
+
 h2 {
   text-align: left;
   margin: 5%;
