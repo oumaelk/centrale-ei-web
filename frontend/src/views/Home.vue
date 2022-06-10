@@ -4,6 +4,7 @@
     <!--<p>Movie Name: {{ $data.movieName }}</p>-->
     <input type="text" v-model="movieName" placeholder="Search movies" />
     <h2>Most Popular this week</h2>
+    <router-link class="nav-link" to="/movies/add">My Movies</router-link>
     <div class="parent">
       <li v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
