@@ -43,7 +43,7 @@ export default {
   height: 400px;
   width: 7cm;
   overflow: hidden;
-  background: grey;
+  background-color: grey;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.3);
   transition: 0.3s ease-out;
   border-radius: 20px;
@@ -81,7 +81,6 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background: grey;
 }
 .info {
   position: absolute;
@@ -96,7 +95,7 @@ export default {
   margin: 3px 0;
 }
 .info span {
-  color: #1a1a1a;
+  color: #ff6978;
 }
 .title {
   text-transform: uppercase;

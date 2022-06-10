@@ -77,8 +77,11 @@ export default {
 }
 
 .add-user-input {
-  margin-right: 10px;
-  padding: 5px;
+  background-color: lightgray;
+  color: black;
+  width: 80%;
+  height: 20px;
+  margin-top: 5%;
 }
 
 .add-user-button {

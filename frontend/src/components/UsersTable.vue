@@ -53,10 +53,13 @@ table {
 th,
 td {
   border: 1px solid #000000;
+  background-color: #fffcf9;
+  color: #6d435a;
   padding: 10px;
 }
 
 .delete-button {
   cursor: pointer;
+  border-radius: 20%;
 }
 </style>
