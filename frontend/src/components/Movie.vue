@@ -29,15 +29,6 @@ export default {
 </script>
 
 <style scoped>
-/*.card {
-  display: block;
-  background-color: black;
-  width: 150px;
-  margin: 2%;
-  border-radius: 10%;
-  color: white;
-  font-size: 15px;
-}*/
 .container {
   position: relative;
   height: 400px;
@@ -111,7 +102,6 @@ export default {
 }
 img {
   width: inherit;
-  border-radius: 10%;
 }
 .card button {
   position: relative;
