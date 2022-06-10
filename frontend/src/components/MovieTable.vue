@@ -50,9 +50,12 @@ th,
 td {
   border: 1px solid #000000;
   padding: 10px;
+  background-color: #fffcf9;
+  color: #6d435a;
 }
 
 .delete-button {
   cursor: pointer;
+  border-radius: 5%;
 }
 </style>
