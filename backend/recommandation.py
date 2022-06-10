@@ -53,7 +53,7 @@ if __name__ == "__main__":
                   'Musical', 'Mystery', 'Romance ', 'Sci-Fi', 'Thriller', 'War', 'Western']
     user_cols = ['user id', 'age', 'gender', 'occupation', 'zip code']
 
-    # 
+    #
 
     nb_movies = data_cols.movie_id.unique().shape[0]
 

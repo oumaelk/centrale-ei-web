@@ -10,17 +10,22 @@ router.get("/", function (req, res) {
 });
 
 router.post("/like/:userId", async function (req, res) {
-  const userId = req.params.userId
-  const movieId = req.body.movieId
-  const note = req.body.note
+  const userId = req.params.userId;
+  const movieId = req.body.movieId;
+  const note = req.body.note;
 
-  await RatingModel.findOneAndUpdate({ movie_id: movieId, user_id: userId }, {
-    movie_id: movieId, user_id: userId, note: note
-  }, { upsert: true })
+  await RatingModel.findOneAndUpdate(
+    { movie_id: movieId, user_id: userId },
+    {
+      movie_id: movieId,
+      user_id: userId,
+      note: note,
+    },
+    { upsert: true }
+  );
 
-  res.send("ok")
+  res.send("ok");
 });
-
 
 router.post("/new", function (req, res) {
   const newUser = new UserModel({

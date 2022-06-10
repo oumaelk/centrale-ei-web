@@ -6,6 +6,7 @@
         <p>Release date: {{ movie.release_date }}</p>
         <p>Viewed by {{ countViewers(movie) }} viewers using our platform.</p>
         <h2>{{ movieDetails.overview }}</h2>
+        <p>Rate this movie from 1 to 5</p>
       </div>
       <div class="column">
         <img :src="createURL(movie)" />
