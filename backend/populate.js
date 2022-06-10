@@ -25,6 +25,7 @@ async function populateMovies(movies) {
       title: movie.title,
       release_date: movie.release_date,
       poster_path: movie.poster_path,
+      tmid: movie.id,
     });
     await newMovie.save();
   }

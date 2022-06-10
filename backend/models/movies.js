@@ -6,6 +6,7 @@ const MovieSchema = new mongoose.Schema({
   url: { type: String },
   release_date: { type: String },
   poster_path: { type: String },
+  tmid: { type: Number },
   viewers: [{ type: mongoose.Schema.Types.ObjectId, ref: "UserModel" }],
 });
 

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-if="movie" class="parent">
+    <div v-if="movie" class="row">
       <div class="column">
         <h1>{{ movie.title }}</h1>
         <p>Release date: {{ movie.release_date }}</p>
         <p>Viewed by {{ countViewers(movie) }} viewers using our platform.</p>
-        <p>Description of the movie: {{ movieOV }}</p>
+        <h2>{{ movieDetails.overview }}</h2>
       </div>
       <div class="column">
         <img :src="createURL(movie)" />
@@ -22,7 +22,7 @@ const apiKey = "15d2ea6d0dc1d476efbca3eba2b9bbfb";
 
 export default {
   data: function () {
-    return { movie: null, movieOV: "" };
+    return { movie: null, movieDetails: "" };
   },
   computed: {
     id: function () {
@@ -30,21 +30,21 @@ export default {
     },
   },
   methods: {
-    fetchMovie: function () {
-      axios
+    fetchMovie: async function () {
+      await axios
         .get(`http://localhost:3000/movies/${this.id}`)
         .then((response) => (this.movie = response.data));
     },
     createURL: function (movie) {
       return "https://image.tmdb.org/t/p/original" + movie.poster_path;
     },
-    fetchMovies: function () {
+    fetchMovieDetails: function () {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${this.id}?api_key=${apiKey}&language=en-US`
+          `https://api.themoviedb.org/3/movie/${this.movie.tmid}?api_key=${apiKey}&language=en-US`
         )
         .then((response) => {
-          this.movieOV = response.data.overview;
+          this.movieDetails = response.data;
         })
         .catch((error) => {
           console.error(error);
@@ -57,8 +57,9 @@ export default {
       return movie.viewers.length;
     },
   },
-  mounted: function () {
-    this.fetchMovie();
+  mounted: async function () {
+    await this.fetchMovie();
+    this.fetchMovieDetails();
   },
 };
 </script>
