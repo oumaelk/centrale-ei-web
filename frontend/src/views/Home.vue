@@ -14,7 +14,6 @@
         />
       </div>
     </div>
-    <h2>Most Popular this week</h2>
     <router-link class="nav-link" to="/movies/add">My Movies</router-link>
     <div class="parent">
       <li v-for="movie in filteredMovies" :key="movie.id">
