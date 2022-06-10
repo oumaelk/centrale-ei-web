@@ -96,5 +96,6 @@ h1 {
 .column img {
   position: relative;
   width: 90%;
+  border-radius: 3%;
 }
 </style>
