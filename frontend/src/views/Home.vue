@@ -1,21 +1,32 @@
 <template>
   <div class="home">
-    <h1>My Films Recommendation</h1>
-    <!--<p>Movie Name: {{ $data.movieName }}</p>-->
-    <h2>Most Popular this week</h2>
-    <input type="text" v-model="movieName" placeholder="Search movies" />
+    <div class="row">
+      <div class="column">
+        <h1>MY MOVIE BUDDY</h1>
+      </div>
+      <div class="column">
+        <img class="icon" src="../icons/3669253_ic_search_icon.png" />
+        <input
+          type="text"
+          v-model="movieName"
+          class="searchbar"
+          placeholder="Search movies"
+        />
+      </div>
+    </div>
+    <router-link class="nav-link" to="/movies/add">My Movies</router-link>
     <div class="parent">
       <li v-for="movie in filteredMovies" :key="movie.id">
         <Movie :movie="movie" />
       </li>
     </div>
-    <h2>Most Popular this week</h2>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
+import { booleanLiteral } from "@babel/types";
 
 export default {
   name: "Home",
@@ -49,6 +60,9 @@ export default {
       });
     },
   },
+  createURL: function (movie) {
+    return "/" + movie.id;
+  },
 };
 </script>
 
@@ -56,6 +70,28 @@ export default {
 <style scoped>
 .home {
   text-align: center;
+  color: white;
+}
+.icon {
+  height: 30px;
+}
+.searchbar {
+  background-color: lightgray;
+  color: black;
+  width: 80%;
+  height: 20px;
+  margin-top: 5%;
+}
+h1 {
+  size: 40px;
+}
+.row {
+  display: flex;
+  align-items: center;
+}
+.column {
+  width: 50%;
+  align-items: center;
 }
 h2 {
   text-align: left;

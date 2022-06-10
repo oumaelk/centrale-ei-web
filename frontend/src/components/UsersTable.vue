@@ -3,7 +3,7 @@
     <thead>
       <th>Email</th>
       <th>First name</th>
-      <th>Lirst name</th>
+      <th>Last name</th>
     </thead>
     <tbody>
       <tr v-for="user in users" :key="user.email">
